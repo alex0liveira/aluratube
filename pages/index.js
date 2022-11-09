@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
+import { StyledBanner } from "../src/components/Banner";
 
 function HomePage() {
     const estilosDaHomePage = {
@@ -21,6 +22,7 @@ function HomePage() {
                 // backgroundColor: "red",
             }}>
                 <Menu />
+                <Banner imagem={config.bannerUrl} />
                 <Header />
                 <Timeline playlists={config.playlists}>
                     Conteúdo
@@ -44,7 +46,6 @@ const StyledHeader = styled.div`
         border-radius: 50%; 
     }
     .user-info{
-        margin-top: 50px;
         display: flex;
         align-items: center;
         width: 100%;
@@ -70,6 +71,14 @@ function Header() {
         </StyledHeader>
     )
 }
+
+function Banner(props) {
+    return (
+        <StyledBanner>
+            <img src={props.imagem} />
+        </StyledBanner>
+    )
+};
 
 function Timeline(props) {
     // console.log("Dentro do Componente:", props.playlists);
