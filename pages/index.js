@@ -4,6 +4,7 @@ import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
 import { StyledBanner } from "../src/components/Banner";
+import { StyledFavorite } from "../src/components/Favorite";
 
 function HomePage() {
     const estilosDaHomePage = {
@@ -11,6 +12,7 @@ function HomePage() {
     };
 
     // console.log(config.playlists)
+    console.log(config["favorites"])
 
     return (
         <>
@@ -27,6 +29,7 @@ function HomePage() {
                 <Timeline playlists={config.playlists}>
                     Conteúdo
                 </Timeline>
+                <Favorites favorites={config["favorites"]} />
             </div>
         </>
     );
@@ -113,6 +116,29 @@ function Timeline(props) {
                 );
             })}
         </StyledTimeline>
+    )
+}
+
+function Favorites(props) {
+
+    const favoriteUsers = props.favorites;
+
+    return (
+        <StyledFavorite>
+            <h2>AluraTubes Favoritos</h2>
+            <div>
+                {favoriteUsers.map((favoriteUser) => {
+                    console.log(favoriteUser);
+                    return (
+                        <a href={`https://github.com/${favoriteUser}`}>
+                            <img src={`https://github.com/${favoriteUser}.png`} />
+                            <span>@{favoriteUser}</span>
+                        </a>
+                    );
+                })
+                }
+            </div>
+        </StyledFavorite>
     )
 }
 
