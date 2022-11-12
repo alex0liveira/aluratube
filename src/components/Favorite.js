@@ -31,6 +31,7 @@ export const StyledFavorite = styled.div`
                 text-align: center;
                 padding-bottom: 24px;
                 display: block;
+                overflow-wrap: break-word;
                 color: ${({ theme }) => theme.textColorBase || "#222222"};
             }
         }
