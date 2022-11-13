@@ -14,7 +14,6 @@ export const StyledFavorite = styled.div`
         grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
         grid-auto-flow: column;
         grid-auto-columns: minmax(100px,1fr);
-        overflow-x: scroll;
         scroll-snap-type: x mandatory;
         width: calc(100vw - 16px * 4);
         a {

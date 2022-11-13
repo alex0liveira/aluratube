@@ -1,25 +1,18 @@
 import React from "react";
 import config from "../config.json";
 import styled from "styled-components";
-import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu/";
 import { StyledTimeline } from "../src/components/Timeline";
 import { StyledBanner } from "../src/components/Banner";
 import { StyledFavorite } from "../src/components/Favorite";
 
 function HomePage() {
-    const estilosDaHomePage = {
-        // backgroundColor: "red" 
-    };
 
     const [valorDoFiltro, setValorDoFiltro] = React.useState("");
 
-    // console.log(config.playlists)
-    //console.log(config["favorites"])
-
     return (
         <>
-            <CSSReset />
+
             <div style={{
                 display: "flex",
                 flexDirection: "column",
@@ -38,14 +31,8 @@ function HomePage() {
     );
 }
 
-// function Menu() {
-//     return (
-//         <div>
-//             Menu
-//         </div>
-//     )
-// }
 const StyledHeader = styled.div`
+    background-color: ${({ theme }) => theme.backgroundLevel1};
     img {
         width: 80px;
         height: 80px;
@@ -62,7 +49,6 @@ const StyledHeader = styled.div`
 function Header() {
     return (
         <StyledHeader>
-            {/*<img src="banner" />*/}
             <section className="user-info">
                 <img src={`https://github.com/${config.github}.png`} />
                 <div>
@@ -87,7 +73,6 @@ function Banner(props) {
 };
 
 function Timeline({ searchValue, ...props }) {
-    // console.log("Dentro do Componente:", props.playlists);
 
     const playlistNames = Object.keys(props.playlists);
 
@@ -98,8 +83,6 @@ function Timeline({ searchValue, ...props }) {
         <StyledTimeline>
             {playlistNames.map((playlistName) => {
                 const videos = props.playlists[playlistName];
-                //console.log(playlistName);
-                //console.log(videos);
                 return (
                     <section key={playlistName}>
                         <h2>{playlistName}</h2>
@@ -135,7 +118,6 @@ function Favorites(props) {
             <h2>AluraTubes Favoritos</h2>
             <div>
                 {favoriteUsers.map((favoriteUser) => {
-                    //console.log(favoriteUser);
                     return (
                         <a key={favoriteUser} href={`https://github.com/${favoriteUser}`}>
                             <img src={`https://github.com/${favoriteUser}.png`} />
