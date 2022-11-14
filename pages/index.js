@@ -5,10 +5,29 @@ import Menu from "../src/components/Menu/";
 import { StyledTimeline } from "../src/components/Timeline";
 import { StyledBanner } from "../src/components/Banner";
 import { StyledFavorite } from "../src/components/Favorite";
+import { videoService } from "../src/services/videoService";
 
 function HomePage() {
-
+    const service = videoService();
     const [valorDoFiltro, setValorDoFiltro] = React.useState("");
+    const [playlists, setPlaylists] = React.useState({});
+
+    React.useEffect(() => {
+        console.log("useEffect");
+        service
+            .getAllVideos()
+            .then((dados) => {
+                console.log(dados.data);
+                const novasPlaylists = { ...playlists };
+                dados.data.forEach((video) => {
+                    if (!novasPlaylists[video.playlist]) novasPlaylists[video.playlist] = [];
+                    novasPlaylists[video.playlist].push(video);
+                })
+                setPlaylists(novasPlaylists);
+            });
+    }, []);
+
+    console.log(playlists)
 
     return (
         <>
@@ -22,7 +41,7 @@ function HomePage() {
                 <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
                 <Banner imagem={config.bannerUrl} />
                 <Header />
-                <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
+                <Timeline searchValue={valorDoFiltro} playlists={playlists}>
                     Conteúdo
                 </Timeline>
                 <Favorites favorites={config["favorites"]} />
